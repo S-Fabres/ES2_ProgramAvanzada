@@ -64,74 +64,109 @@ namespace ES2_ProgramAvanzada
             auxMedidor.UltimaLectura = "";
             List<Medidor> medidores = medidoresDAL.ObtenerMedidores();
             //Console.WriteLine("OK hasta aquí");
-            if (medidores!=null)
+            int valor = 0;
+            if (medidores is null)
             {
-                foreach (Medidor medidor in medidores)
-                {
-                    if (auxMedidor.IdMedidor.Equals(medidor.IdMedidor))
-                    {
-                        Console.WriteLine("Medidor se encuentra registrado anteriormente");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ingrese lectura inicial :");
-                        string lecturaInicial = Console.ReadLine().Trim();
-                        Console.WriteLine("Ingrese ultima lectura :");
-                        string ultimaLectura = Console.ReadLine().Trim();
-
-                        Medidor aMedidor = new Medidor()
-                        {
-                            IdMedidor = idMedidor,
-                            LecturaInicial = lecturaInicial,
-                            UltimaLectura = ultimaLectura
-                        };
-                        lock (medidoresDAL)
-                        {
-                            medidoresDAL.AgregarMedidor(aMedidor);
-                            Console.WriteLine("OK");
-                        }
-                    }
-                }      
-            }
-            else
-            {
+                
                 Console.WriteLine("Ingrese lectura inicial :");
                 string lecturaInicial = Console.ReadLine().Trim();
                 Console.WriteLine("Ingrese ultima lectura :");
                 string ultimaLectura = Console.ReadLine().Trim();
-
+                
                 Medidor aMedidor = new Medidor()
+                    {
+                        IdMedidor = idMedidor,
+                        LecturaInicial = lecturaInicial,
+                        UltimaLectura = ultimaLectura
+                    };
+                    lock (medidoresDAL)
+                    {
+                        medidoresDAL.AgregarMedidor(aMedidor);
+                        Console.WriteLine("OK");
+                    }
+            }
+            else
+            {
+                
+                medidores = medidoresDAL.ObtenerMedidores();
+                foreach (Medidor medidor in medidores)
                 {
-                    IdMedidor = idMedidor,
-                    LecturaInicial = lecturaInicial,
-                    UltimaLectura = ultimaLectura
-                };
-                lock (medidoresDAL)
-                {
-                    medidoresDAL.AgregarMedidor(aMedidor);
-                    Console.WriteLine("OK");
+                    if (auxMedidor.IdMedidor == medidor.IdMedidor)
+                    {
+                        valor = 1;
+                    }
+                    else
+                    {
+                        valor = 0;
+                    }
+                        
                 }
+                if (valor == 1)
+                {
+                    Console.WriteLine("Medidor ingresado anteriormente");
+                    
+                }
+                else
+                {
+                    Console.WriteLine("Ingrese lectura inicial :");
+                    string lecturaInicial = Console.ReadLine().Trim();
+                    Console.WriteLine("Ingrese ultima lectura :");
+                    string ultimaLectura = Console.ReadLine().Trim();
+
+                    Medidor aMedidor = new Medidor()
+                    {
+                        IdMedidor = idMedidor,
+                        LecturaInicial = lecturaInicial,
+                        UltimaLectura = ultimaLectura
+                    };
+                    lock (medidoresDAL)
+                    {
+                        medidoresDAL.AgregarMedidor(aMedidor);
+                        Console.WriteLine("OK");
+                    }
+                }
+                
+
 
             }
-
+            
         }
         static void IngresarLectura()
         {
             Console.WriteLine("Ingrese codigo de lectura :");
             string codLectura = Console.ReadLine().Trim();
-            Console.WriteLine("Ingrese identificador del medidor :");
-            string idMedidor = Console.ReadLine().Trim();
+            
+            int auxiliar = 0;
             Medidor auxMedidor = new Medidor();
-            auxMedidor.IdMedidor = idMedidor;
-            List<Medidor> medidores = new List<Medidor>();
-            lock (medidoresDAL)
+            Lectura auxLectura = new Lectura();
+            auxLectura.CodLectura = codLectura;
+            List<Lectura> lecturas = new List<Lectura>();
+            lock (lecturasDAL)
             {
-                medidores = medidoresDAL.ObtenerMedidores();
+                lecturas = lecturasDAL.ObtenerLecturas();
             }
-            foreach (Medidor medidor in medidores)
+            if (lecturas is null)
             {
-                if (auxMedidor.IdMedidor.Equals(medidor.IdMedidor))
+                Console.WriteLine("Ingrese identificador del medidor :");
+                string idMedidor = Console.ReadLine().Trim();
+                auxMedidor.IdMedidor = idMedidor;
+                List<Medidor> medidores = new List<Medidor>();
+                lock (medidoresDAL)
                 {
+                    medidores = medidoresDAL.ObtenerMedidores();
+                }
+                foreach (Medidor medidor in medidores)
+                {
+                    if (auxMedidor.IdMedidor == medidor.IdMedidor)
+                    {
+                        auxiliar = 1;
+
+                    }
+
+                }
+                if (auxiliar == 1)
+                {
+                    Console.WriteLine("Medidor registrado");
                     Console.WriteLine("Ingrese fecha en formato DD-MM-AAAA :");
                     string fecha = Console.ReadLine().Trim();
                     Console.WriteLine("Ingrese lectura actual :");
@@ -146,43 +181,115 @@ namespace ES2_ProgramAvanzada
                     lock (lecturasDAL)
                     {
                         lecturasDAL.IngresarLectura(lectura);
+                        Console.WriteLine("OK");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("El medidor ingresado no se encuentra registrado");
+                    Console.WriteLine("El identificador de medidor ingresado no corresponde a ningun medidor registrado");
                 }
             }
+            else
+            {
+                foreach (Lectura lectura in lecturas)
+                {
+                    if (auxLectura.CodLectura == lectura.CodLectura)
+                    {
+                        auxiliar = 1;
+                    }
+                }
+                if (auxiliar == 1)
+                {
+                    Console.WriteLine("El código ingresado se encuentra asociado a otra lectura");
+                }
+                else
+                {
+                    Console.WriteLine("Ingrese identificador del medidor :");
+                    string idMedidor = Console.ReadLine().Trim();
+                    auxMedidor.IdMedidor = idMedidor;
+                    List<Medidor> medidores = new List<Medidor>();
+                    lock (medidoresDAL)
+                    {
+                        medidores = medidoresDAL.ObtenerMedidores();
+                    }
+                    foreach (Medidor medidor in medidores)
+                    {
+                        if (auxMedidor.IdMedidor == medidor.IdMedidor)
+                        {
+                            auxiliar = 1;
+
+                        }
+
+                    }
+                    if (auxiliar == 1)
+                    {
+                        Console.WriteLine("Medidor registrado");
+                        Console.WriteLine("Ingrese fecha en formato DD-MM-AAAA :");
+                        string fecha = Console.ReadLine().Trim();
+                        Console.WriteLine("Ingrese lectura actual :");
+                        string lecturaActual = Console.ReadLine().Trim();
+                        Lectura lectura = new Lectura()
+                        {
+                            CodLectura = codLectura,
+                            IdMedidor = idMedidor,
+                            Fecha = fecha,
+                            LecturaActual = lecturaActual
+                        };
+                        lock (lecturasDAL)
+                        {
+                            lecturasDAL.IngresarLectura(lectura);
+                            Console.WriteLine("OK");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("El identificador de medidor ingresado no corresponde a ningun medidor registrado");
+                    }
+
+                }
+            }
+            
             
         }
         static void ObtenerMedidores()
         {
-            List<Medidor> medidores= new List<Medidor>();
-            
+            try
+            {
 
-            lock (medidoresDAL)
+
+                List<Medidor> medidores = new List<Medidor>();
+                lock (medidoresDAL)
+                {
+                    medidores = medidoresDAL.ObtenerMedidores();
+                }
+                foreach (Medidor medidor in medidores)
+                {
+                    Console.WriteLine(medidor);
+                }
+            } catch (Exception)
             {
-                medidores = medidoresDAL.ObtenerMedidores();
+                Console.WriteLine("No hay medidores registrados");
             }
-            foreach (Medidor medidor in medidores)
-            {
-                Console.WriteLine(medidor);
-            }
-        
         }
     
 
         static void ObtenerLecturas()
         {
-            List<Lectura> lecturas = new List<Lectura>();
-            lock (lecturasDAL)
+            try
             {
-                lecturas = lecturasDAL.ObtenerLecturas();
+                List<Lectura> lecturas = new List<Lectura>();
+                lock (lecturasDAL)
+                {
+                    lecturas = lecturasDAL.ObtenerLecturas();
 
-            }
-            foreach (Lectura lectura in lecturas)
+                }
+                foreach (Lectura lectura in lecturas)
+                {
+                    Console.WriteLine(lectura);
+                }
+            } catch (Exception)
             {
-                Console.WriteLine(lectura);
+                Console.WriteLine("No hay lecturas registradas");
             }
         }
     }

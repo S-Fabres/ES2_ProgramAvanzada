@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.28307.1972
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ES2_ProgramAvanzada", "ES2_ProgramAvanzada\ES2_ProgramAvanzada.csproj", "{08BEF66C-36BA-4EA8-A415-47EC278E9A9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedidorModel", "..\MedidorModel\MedidorModel\MedidorModel.csproj", "{F97BDABE-15DE-4950-A6A6-2F1BD9F791D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedidorModel", "ES2_ProgramAvanzada\MedidorModel\MedidorModel\MedidorModel.csproj", "{F97BDABE-15DE-4950-A6A6-2F1BD9F791D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturaModel", "..\LecturaModel\LecturaModel\LecturaModel.csproj", "{7E06E491-D7FE-4ED1-AB1C-882692E9797B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturaModel", "ES2_ProgramAvanzada\LecturaModel\LecturaModel\LecturaModel.csproj", "{7E06E491-D7FE-4ED1-AB1C-882692E9797B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServetSocketUtils", "..\ServetSocketUtils\ServetSocketUtils\ServetSocketUtils.csproj", "{D8C6B999-2C9E-457E-B8C1-794064096912}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServetSocketUtils", "ES2_ProgramAvanzada\ServetSocketUtils\ServetSocketUtils\ServetSocketUtils.csproj", "{D8C6B999-2C9E-457E-B8C1-794064096912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

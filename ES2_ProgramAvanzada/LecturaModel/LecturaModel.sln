@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1972
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LecturaModel", "LecturaModel\LecturaModel.csproj", "{7E06E491-D7FE-4ED1-AB1C-882692E9797B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E06E491-D7FE-4ED1-AB1C-882692E9797B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E06E491-D7FE-4ED1-AB1C-882692E9797B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E06E491-D7FE-4ED1-AB1C-882692E9797B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E06E491-D7FE-4ED1-AB1C-882692E9797B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DF30BB2-E28E-4D60-932A-43401F8E2BB5}
+	EndGlobalSection
+EndGlobal

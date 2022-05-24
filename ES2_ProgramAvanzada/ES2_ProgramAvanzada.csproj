@@ -70,20 +70,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\LecturaModel\LecturaModel\LecturaModel.csproj">
-      <Project>{7e06e491-d7fe-4ed1-ab1c-882692e9797b}</Project>
-      <Name>LecturaModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\MedidorModel\MedidorModel\MedidorModel.csproj">
-      <Project>{f97bdabe-15de-4950-a6a6-2f1bd9f791d0}</Project>
-      <Name>MedidorModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ServetSocketUtils\ServetSocketUtils\ServetSocketUtils.csproj">
-      <Project>{d8c6b999-2c9e-457e-b8c1-794064096912}</Project>
-      <Name>ServetSocketUtils</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +83,20 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="LecturaModel\LecturaModel\LecturaModel.csproj">
+      <Project>{7e06e491-d7fe-4ed1-ab1c-882692e9797b}</Project>
+      <Name>LecturaModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="MedidorModel\MedidorModel\MedidorModel.csproj">
+      <Project>{f97bdabe-15de-4950-a6a6-2f1bd9f791d0}</Project>
+      <Name>MedidorModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="ServetSocketUtils\ServetSocketUtils\ServetSocketUtils.csproj">
+      <Project>{d8c6b999-2c9e-457e-b8c1-794064096912}</Project>
+      <Name>ServetSocketUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
